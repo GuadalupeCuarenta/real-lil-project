@@ -1,9 +1,13 @@
 namespace SpriteKind {
     export const Tile = SpriteKind.create()
 }
-let mySprite = sprites.create(assets.image`Player one`, SpriteKind.Player)
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+    mySprite.vy = -100
+    mySprite.ay = 300
+})
+let mySprite: Sprite = null
+mySprite = sprites.create(assets.image`Player one`, SpriteKind.Player)
 mySprite.setPosition(50, 100)
-mySprite.setVelocity(0, 50)
 mySprite.sayText(":)")
 controller.moveSprite(mySprite)
 let mySprite3 = sprites.create(assets.image`platform`, SpriteKind.Tile)
