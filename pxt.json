@@ -1,10 +1,11 @@
 {
-    "name": "Real Lil Project",
+    "name": "Real Lil Project - Copy",
     "description": "",
     "dependencies": {
         "device": "*",
         "tilemaps": "github:microsoft/pxt-tilemaps#v1.12.0",
-        "arcade-split-screen": "github:riknoll/arcade-split-screen#v0.0.3"
+        "arcade-split-screen": "github:riknoll/arcade-split-screen#v0.0.3",
+        "arcade-tile-util": "github:microsoft/arcade-tile-util#v1.1.0"
     },
     "files": [
         "main.blocks",
