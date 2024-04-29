@@ -1,18 +1,27 @@
 namespace SpriteKind {
     export const Tile = SpriteKind.create()
+    export const PLayer2 = SpriteKind.create()
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (mySprite.vy == 0) {
         mySprite.vy = -175
     }
 })
+scene.onOverlapTile(SpriteKind.PLayer2, assets.tile`Lava`, function (sprite, location) {
+    sprites.destroy(mySprite2)
+})
 function Generate_platform (Column: number, Row: number) {
     for (let i = 0; i <= Row; i++) {
+        RandomColumn = Column + randint(-3, 2)
+        randomrow = i + 3
         _true += 1
         if (_true == 2) {
-            tiles.setTileAt(tiles.getTileLocation(Column + randint(-3, 2), i + 3), assets.tile`myTile0`)
+            tiles.setTileAt(tiles.getTileLocation(RandomColumn, randomrow), assets.tile`myTile0`)
             console.log("set")
             _true = 0
+            if (Math.percentChance(10)) {
+                tiles.setTileAt(tiles.getTileLocation(RandomColumn, randomrow + -1), assets.tile`myTile1`)
+            }
         }
     }
 }
@@ -22,10 +31,12 @@ controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Lava`, function (sprite, location) {
-	
+    sprites.destroy(mySprite)
 })
 let Height = 0
 let _true = 0
+let randomrow = 0
+let RandomColumn = 0
 let mySprite2: Sprite = null
 let mySprite: Sprite = null
 mySprite = sprites.create(assets.image`Player one`, SpriteKind.Player)
@@ -52,7 +63,7 @@ mySprite2 = sprites.create(img`
     . . f d d d f f f f d d d f . . 
     . . f d d d d d d d d d d f . . 
     . . f f f f f f f f f f f f . . 
-    `, SpriteKind.Player)
+    `, SpriteKind.PLayer2)
 controller.player2.moveSprite(mySprite2, 100, 0)
 mySprite2.ay = 300
 mySprite2.y = 0
